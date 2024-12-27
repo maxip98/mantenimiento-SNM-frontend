@@ -1,15 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Home from './pages/Home';
-import LoginPage from './pages/LoginPage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/Login';
+import TaskManager from './components/TaskManager';
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/tasks" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<TaskManager />} />
       </Routes>
     </Router>
   );

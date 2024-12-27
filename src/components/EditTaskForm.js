@@ -1,3 +1,5 @@
+// EditTaskForm: Formulario para editar una tarea con campos para local, pedido, descripción y prioridad.
+
 import React from 'react';
 
 const EditTaskForm = ({ editTask, setEditTask, updateTask }) => {

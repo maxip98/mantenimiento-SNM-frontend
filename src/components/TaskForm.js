@@ -1,3 +1,5 @@
+// TaskForm: Formulario para agregar una nueva tarea con campos para local, pedido, descripción y prioridad.
+
 import React from 'react';
 
 const TaskForm = ({ newTask, setNewTask, addTask }) => {

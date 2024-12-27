@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaEdit, FaTrash, FaSave, FaTimes, FaCheck } from 'react-icons/fa';
 
-const TaskItem = ({ task, deleteTask, updateTask, completeTask }) => {
+const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTask, setEditedTask] = useState({ ...task });
 
@@ -99,7 +99,7 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask }) => {
           </div>
         </>
       ) : (
-        <>
+<>
           <div className="mb-2"><strong>ID:</strong> {task._id}</div>
           <div className="mb-2"><strong>Local:</strong> {task.local}</div>
           <div className="mb-2"><strong>Pedido:</strong> {task.pedido}</div>
@@ -107,26 +107,28 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask }) => {
           <div className="mb-2"><strong>Prioridad:</strong> {task.prioridad}</div>
           <div className="mb-4"><strong>Fecha de carga:</strong> {new Date(task.fechaCarga).toLocaleDateString()}</div>
           <div className="flex justify-between">
-            {!task.completed && (
-              <button
-                onClick={handleCompleteClick}
-                className="py-1 px-2 bg-green-500 text-white rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 flex items-center"
-              >
-                <FaCheck className="mr-1" /> Completar
-              </button>
+            {!task.completed && userRole === 'admin' && (
+              <>
+                <button
+                  onClick={handleCompleteClick}
+                  className="py-1 px-2 bg-green-500 text-white rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 flex items-center"
+                >
+                  <FaCheck className="mr-1" /> Completar
+                </button>
+                <button
+                  onClick={handleEditClick}
+                  className="py-1 px-2 bg-yellow-500 text-white rounded-md shadow hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 flex items-center"
+                >
+                  <FaEdit className="mr-1" /> Editar
+                </button>
+                <button
+                  onClick={() => deleteTask(task._id)}
+                  className="py-1 px-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 flex items-center"
+                >
+                  <FaTrash className="mr-1" /> Eliminar
+                </button>
+              </>
             )}
-            <button
-              onClick={handleEditClick}
-              className="py-1 px-2 bg-yellow-500 text-white rounded-md shadow hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 flex items-center"
-            >
-              <FaEdit className="mr-1" /> Editar
-            </button>
-            <button
-              onClick={() => deleteTask(task._id)}
-              className="py-1 px-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 flex items-center"
-            >
-              <FaTrash className="mr-1" /> Eliminar
-            </button>
           </div>
         </>
       )}
