@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { FaEdit, FaTrash, FaSave, FaTimes, FaCheck } from 'react-icons/fa';
+import ConfirmationModal from './ConfirmationModal';
 
 const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTask, setEditedTask] = useState({ ...task });
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -25,9 +28,21 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
   };
 
   const handleCompleteClick = () => {
-    if (window.confirm('¿Estás seguro de que quieres marcar esta tarea como completada?')) {
-      completeTask(task._id);
-    }
+    setIsCompleteModalOpen(true);
+  };
+
+  const handleDeleteClick = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const confirmCompleteTask = () => {
+    completeTask(task._id);
+    setIsCompleteModalOpen(false);
+  };
+
+  const confirmDeleteTask = () => {
+    deleteTask(task._id);
+    setIsDeleteModalOpen(false);
   };
 
   return (
@@ -99,7 +114,7 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
           </div>
         </>
       ) : (
-<>
+        <>
           <div className="mb-2"><strong>ID:</strong> {task._id}</div>
           <div className="mb-2"><strong>Local:</strong> {task.local}</div>
           <div className="mb-2"><strong>Pedido:</strong> {task.pedido}</div>
@@ -122,7 +137,7 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
                   <FaEdit className="mr-1" /> Editar
                 </button>
                 <button
-                  onClick={() => deleteTask(task._id)}
+                  onClick={handleDeleteClick}
                   className="py-1 px-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 flex items-center"
                 >
                   <FaTrash className="mr-1" /> Eliminar
@@ -132,6 +147,20 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
           </div>
         </>
       )}
+      <ConfirmationModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={confirmDeleteTask}
+        title="Confirmar Eliminación"
+        message="¿Estás seguro de que quieres eliminar esta tarea?"
+      />
+      <ConfirmationModal
+        isOpen={isCompleteModalOpen}
+        onClose={() => setIsCompleteModalOpen(false)}
+        onConfirm={confirmCompleteTask}
+        title="Confirmar Completado"
+        message="¿Estás seguro de que quieres marcar esta tarea como completada?"
+      />
     </div>
   );
 };

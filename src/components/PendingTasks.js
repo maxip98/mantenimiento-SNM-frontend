@@ -4,15 +4,34 @@ import TaskList from './TaskList';
 
 const PendingTasks = ({ tasks, filters, setFilters, showFilters, setShowFilters, deleteTask, updateTask, completeTask, userRole }) => {
   const applyFilters = () => {
-    // Lógica de filtrado aquí
+    let filteredTasks = tasks.filter(task => !task.completed);
+    if (filters.local) {
+      filteredTasks = filteredTasks.filter(task => task.local === filters.local);
+    }
+    if (filters.prioridad) {
+      filteredTasks = filteredTasks.filter(task => task.prioridad === filters.prioridad);
+    }
+    if (filters.ordenarPor === 'prioridad') {
+      filteredTasks.sort((a, b) => {
+        const prioridadOrder = { alta: 1, media: 2, baja: 3 };
+        return prioridadOrder[a.prioridad] - prioridadOrder[b.prioridad];
+      });
+    } else if (filters.ordenarPor === 'fechaAsc') {
+      filteredTasks.sort((a, b) => new Date(a.fechaCarga) - new Date(b.fechaCarga));
+    } else {
+      filteredTasks.sort((a, b) => new Date(b.fechaCarga) - new Date(a.fechaCarga));
+    }
+    return filteredTasks;
   };
 
-  const clearFilters = () => {
-    setFilters({
-      local: '',
-      prioridad: '',
-      ordenarPor: 'fechaDesc'
-    });
+  const handleApplyFilters = () => {
+    applyFilters();
+    setShowFilters(false); // Esconder el acordeón de búsqueda
+  };
+
+  const handleClearFilters = () => {
+    setFilters({ local: '', prioridad: '', ordenarPor: 'fechaDesc' });
+    setShowFilters(false); // Esconder el acordeón de búsqueda
   };
 
   return (
@@ -26,7 +45,7 @@ const PendingTasks = ({ tasks, filters, setFilters, showFilters, setShowFilters,
         </button>
         {filters.local || filters.prioridad ? (
           <button
-            onClick={clearFilters}
+            onClick={handleClearFilters}
             className="ml-2 py-1 px-3 bg-gray-600 text-white font-semibold rounded-md shadow hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
           >
             Borrar Filtros
@@ -34,13 +53,13 @@ const PendingTasks = ({ tasks, filters, setFilters, showFilters, setShowFilters,
         ) : null}
       </div>
       {showFilters && (
-        <TaskFilters filters={filters} setFilters={setFilters} applyFilters={applyFilters} />
+        <TaskFilters filters={filters} setFilters={setFilters} applyFilters={handleApplyFilters} />
       )}
       <TaskList
-        tasks={tasks.filter(task => !task.completed)}
-        deleteTask={deleteTask}
-        updateTask={updateTask}
-        completeTask={completeTask}
+        tasks={applyFilters()}
+        deleteTask={userRole === 'admin' ? deleteTask : null}
+        updateTask={userRole === 'admin' ? updateTask : null}
+        completeTask={userRole === 'admin' ? completeTask : null}
         userRole={userRole}
       />
     </div>
