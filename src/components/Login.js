@@ -1,5 +1,3 @@
-//Login: Formulario de inicio de sesión que envía los datos a un servidor y almacena el token en localStorage.
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -11,7 +9,7 @@ const Login = () => {
     e.preventDefault();
     console.log('Formulario enviado'); // Mensaje de depuración
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { username, password });
+      const response = await axios.post('https://mantenimiento-snm-backend-production.up.railway.app/api/auth/login', { username, password });
       console.log('Respuesta del servidor:', response.data); // Mensaje de depuración
       localStorage.setItem('token', response.data.token);
       console.log('Token almacenado en localStorage:', localStorage.getItem('token')); // Mensaje de depuración
