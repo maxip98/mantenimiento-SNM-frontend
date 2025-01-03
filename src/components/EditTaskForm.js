@@ -18,9 +18,8 @@ const EditTaskForm = ({ editTask, setEditTask, updateTask }) => {
           onChange={handleChange}
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
         >
-          <option value="local1">Local 1</option>
-          <option value="local2">Local 2</option>
-          <option value="local3">Local 3</option>
+          <option value="local1">Say No More - Gral. Paz</option>
+          <option value="local2">Say wich - Gral. Paz</option>
         </select>
       </div>
       <div className="mb-2">
