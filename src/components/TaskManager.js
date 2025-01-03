@@ -25,6 +25,7 @@ const TaskManager = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [showCompletedFilters, setShowCompletedFilters] = useState(false);
   const [userRole, setUserRole] = useState('');
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -32,7 +33,7 @@ const TaskManager = () => {
       window.location.href = '/login';
     } else {
       fetchTasks();
-      fetchUserRole();
+      fetchUserDetails();
     }
   }, []);
 
@@ -45,11 +46,12 @@ const TaskManager = () => {
     }
   };
 
-  const fetchUserRole = async () => {
+  const fetchUserDetails = async () => {
     const token = localStorage.getItem('token');
     if (token) {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUserRole(decodedToken.role);
+      setUsername(decodedToken.username); // Asumiendo que el token contiene el nombre de usuario
     }
   };
 
@@ -105,7 +107,7 @@ const TaskManager = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
-      <NavBar handleLogout={handleLogout} />
+      <NavBar handleLogout={handleLogout} username={username} />
       <MenuTabs setActiveTab={setActiveTab} activeTab={activeTab} userRole={userRole} />
       <div className="bg-white p-4 rounded-lg shadow-lg">
         {activeTab === 'pending' && (
