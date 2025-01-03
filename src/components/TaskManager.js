@@ -50,6 +50,7 @@ const TaskManager = () => {
     const token = localStorage.getItem('token');
     if (token) {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
+      console.log(decodedToken); // Verifica que el token contiene el campo 'username'
       setUserRole(decodedToken.role);
       setUsername(decodedToken.username); // Asumiendo que el token contiene el nombre de usuario
     }
