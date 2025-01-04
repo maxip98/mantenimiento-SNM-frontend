@@ -57,8 +57,8 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
               onChange={handleChange}
               className="ml-2 border rounded p-1"
             >
-              <option value="local1">Say No More</option>
-              <option value="local2">Say Wich</option>
+              <option value="Say No More">Say No More</option>
+              <option value="Say Wich">Say Wich</option>
             </select>
           </div>
           <div className="mb-2">

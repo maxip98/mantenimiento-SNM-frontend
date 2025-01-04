@@ -10,7 +10,7 @@ import EditTaskForm from './EditTaskForm';
 const TaskManager = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({
-    local: 'local1',
+    local: 'Say No More',
     pedido: '',
     descripcion: '',
     prioridad: 'baja'
@@ -61,7 +61,7 @@ const TaskManager = () => {
       const response = await api.post('/tasks', newTask);
       setTasks([response.data, ...tasks]);
       setNewTask({
-        local: 'local1',
+        local: 'Say No More',
         pedido: '',
         descripcion: '',
         prioridad: 'baja'
