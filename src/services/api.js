@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://mantenimiento-snm-backend-production.up.railway.app/api',
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`
   }

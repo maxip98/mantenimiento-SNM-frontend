@@ -9,7 +9,7 @@ const Login = () => {
     e.preventDefault();
     console.log('Formulario enviado'); // Mensaje de depuración
     try {
-      const response = await axios.post('https://mantenimiento-snm-backend-production.up.railway.app/api/auth/login', { username, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { username, password });
       console.log('Respuesta del servidor:', response.data); // Mensaje de depuración
       localStorage.setItem('token', response.data.token);
       console.log('Token almacenado en localStorage:', localStorage.getItem('token')); // Mensaje de depuración
