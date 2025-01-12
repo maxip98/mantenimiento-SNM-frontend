@@ -58,7 +58,7 @@ const TaskManager = () => {
 
   const addTask = async () => {
     try {
-      const response = await api.post('/tasks', newTask);
+      const response = await api.post('/tasks', { ...newTask, pedidoPor: username }); // Agregar el campo "pedido por"
       setTasks([response.data, ...tasks]);
       setNewTask({
         local: 'Say No More',

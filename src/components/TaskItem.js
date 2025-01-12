@@ -119,6 +119,7 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
           <div className="mb-2"><strong>Pedido:</strong> {task.pedido}</div>
           <div className="mb-2"><strong>Descripción:</strong> {task.descripcion}</div>
           <div className="mb-2"><strong>Prioridad:</strong> {task.prioridad}</div>
+          <div className="mb-2"><strong>Pedido por:</strong> {task.pedidoPor}</div> {/* Mostrar el campo "pedido por" */}
           <div className="mb-4"><strong>Fecha de carga:</strong> {new Date(task.fechaCarga).toLocaleDateString()}</div>
           <div className="flex justify-between">
             {!task.completed && userRole === 'admin' && (
