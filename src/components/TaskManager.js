@@ -13,7 +13,8 @@ const TaskManager = () => {
     local: 'Say No More',
     pedido: '',
     descripcion: '',
-    prioridad: 'baja'
+    prioridad: 'baja',
+    tipoMantenimiento: 'equipo de frio' // Valor por defecto
   });
   const [activeTab, setActiveTab] = useState('pending');
   const [editTask, setEditTask] = useState(null);
@@ -64,7 +65,8 @@ const TaskManager = () => {
         local: 'Say No More',
         pedido: '',
         descripcion: '',
-        prioridad: 'baja'
+        prioridad: 'baja',
+        tipoMantenimiento: 'equipo de frio' // Valor por defecto
       });
       setActiveTab('pending');
     } catch (error) {
@@ -141,7 +143,7 @@ const TaskManager = () => {
           />
         )}
         {editTask && userRole === 'admin' && (
-          <EditTaskForm editTask={editTask} setEditTask={setEditTask} updateTask={updateTask} />
+          <EditTaskForm editTask={editTask} setEditTask={setEditTask} updateTask={updateTask} userRole={userRole} />
         )}
       </div>
     </div>

@@ -94,6 +94,22 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
               <option value="baja">Baja</option>
             </select>
           </div>
+          <div className="mb-2">
+            <strong>Tipo de mantenimiento:</strong>
+            <select
+              name="tipoMantenimiento"
+              value={editedTask.tipoMantenimiento}
+              onChange={handleChange}
+              className="ml-2 border rounded p-1"
+              disabled={userRole !== 'admin'} // Deshabilitar si el usuario no es admin
+            >
+              <option value="equipo de frio">Equipo de frío</option>
+              <option value="pequeño electrodomestico">Pequeño electrodoméstico</option>
+              <option value="edilicio">Edilicio</option>
+              <option value="mobiliario">Mobiliario</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
           <div className="mb-4">
             <strong>Fecha de carga:</strong> {new Date(task.fechaCarga).toLocaleDateString()}
           </div>
@@ -119,6 +135,7 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
           <div className="mb-2"><strong>Pedido:</strong> {task.pedido}</div>
           <div className="mb-2"><strong>Descripción:</strong> {task.descripcion}</div>
           <div className="mb-2"><strong>Prioridad:</strong> {task.prioridad}</div>
+          <div className="mb-2"><strong>Tipo de mantenimiento:</strong> {task.tipoMantenimiento}</div> {/* Mostrar el campo "tipo de mantenimiento" */}
           <div className="mb-2"><strong>Pedido por:</strong> {task.pedidoPor}</div> {/* Mostrar el campo "pedido por" */}
           <div className="mb-4"><strong>Fecha de carga:</strong> {new Date(task.fechaCarga).toLocaleDateString()}</div>
           <div className="flex justify-between">
@@ -134,7 +151,7 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
                   onClick={handleEditClick}
                   className="py-1 px-2 bg-yellow-500 text-white rounded-md shadow hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 flex items-center"
                 >
-                  <FaEdit className="mr-1" /> Editar
+                    <FaEdit className="mr-1" /> Editar
                 </button>
                 <button
                   onClick={handleDeleteClick}
