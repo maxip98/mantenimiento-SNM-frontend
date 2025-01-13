@@ -1,3 +1,5 @@
+// Formulario de inicio de sesión. Envía las credenciales del usuario al servidor y almacena el token de autenticación en el localStorage si el inicio de sesión es exitoso.
+
 import React, { useState } from 'react';
 import axios from 'axios';
 

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import NavBar from './NavBar';
-import MenuTabs from './MenuTabs';
-import PendingTasks from './PendingTasks';
-import CompletedTasks from './CompletedTasks';
-import TaskForm from './TaskForm';
-import EditTaskForm from './EditTaskForm';
+import TaskTabs from './TaskTabs';
+import TaskListContainer from './TaskListContainer';
 
 const TaskManager = () => {
   const [tasks, setTasks] = useState([]);
@@ -111,41 +108,26 @@ const TaskManager = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <NavBar handleLogout={handleLogout} username={username} />
-      <MenuTabs setActiveTab={setActiveTab} activeTab={activeTab} userRole={userRole} />
-      <div className="bg-white p-4 rounded-lg shadow-lg">
-        {activeTab === 'pending' && (
-          <PendingTasks
-            tasks={tasks}
-            filters={filters}
-            setFilters={setFilters}
-            showFilters={showFilters}
-            setShowFilters={setShowFilters}
-            deleteTask={deleteTask}
-            updateTask={updateTask}
-            completeTask={completeTask}
-            userRole={userRole}
-          />
-        )}
-        {activeTab === 'newTask' && userRole === 'admin' && (
-          <TaskForm newTask={newTask} setNewTask={setNewTask} addTask={addTask} />
-        )}
-        {activeTab === 'completed' && (
-          <CompletedTasks
-            tasks={tasks}
-            filters={filters}
-            setFilters={setFilters}
-            showCompletedFilters={showCompletedFilters}
-            setShowCompletedFilters={setShowCompletedFilters}
-            deleteTask={deleteTask}
-            updateTask={updateTask}
-            completeTask={completeTask}
-            userRole={userRole}
-          />
-        )}
-        {editTask && userRole === 'admin' && (
-          <EditTaskForm editTask={editTask} setEditTask={setEditTask} updateTask={updateTask} userRole={userRole} />
-        )}
-      </div>
+      <TaskTabs setActiveTab={setActiveTab} activeTab={activeTab} userRole={userRole} />
+      <TaskListContainer
+        activeTab={activeTab}
+        tasks={tasks}
+        filters={filters}
+        setFilters={setFilters}
+        showFilters={showFilters}
+        setShowFilters={setShowFilters}
+        showCompletedFilters={showCompletedFilters}
+        setShowCompletedFilters={setShowCompletedFilters}
+        deleteTask={deleteTask}
+        updateTask={updateTask}
+        completeTask={completeTask}
+        userRole={userRole}
+        newTask={newTask}
+        setNewTask={setNewTask}
+        addTask={addTask}
+        editTask={editTask}
+        setEditTask={setEditTask}
+      />
     </div>
   );
 };

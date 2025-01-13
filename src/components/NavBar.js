@@ -1,3 +1,5 @@
+// Barra de navegación que muestra el nombre del usuario y un botón para cerrar sesión.
+
 import React from 'react';
 
 const NavBar = ({ handleLogout, username }) => {

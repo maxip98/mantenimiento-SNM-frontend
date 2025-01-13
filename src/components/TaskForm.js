@@ -1,3 +1,5 @@
+// Formulario para agregar una nueva tarea. Permite ingresar detalles como local, pedido, descripción, prioridad y tipo de mantenimiento. Al hacer clic en el botón "Agregar", se llama a la función addTask.
+
 import React from 'react';
 
 const TaskForm = ({ newTask, setNewTask, addTask }) => {

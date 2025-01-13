@@ -1,3 +1,5 @@
+// Formulario para editar una tarea existente. Permite modificar campos como local, pedido, descripción, prioridad y tipo de mantenimiento. El campo de tipo de mantenimiento está deshabilitado para usuarios que no son administradores.
+
 import React from 'react';
 
 const EditTaskForm = ({ editTask, setEditTask, updateTask, userRole }) => {

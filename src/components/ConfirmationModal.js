@@ -1,3 +1,5 @@
+// Componente modal de confirmación que se utiliza para confirmar acciones del usuario, como eliminar una tarea. Muestra un mensaje y dos botones para confirmar o cancelar la acción.
+
 import React from 'react';
 
 const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, message }) => {
