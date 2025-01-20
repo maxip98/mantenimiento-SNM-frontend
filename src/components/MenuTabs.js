@@ -1,4 +1,4 @@
-// MenuTabs: Pestañas de navegación para cambiar entre tareas pendientes, agregar nueva tarea (solo para admin) y tareas completadas.
+// MenuTabs:  Pestañas de navegación para cambiar entre tareas pendientes, agregar nueva tarea (solo para administradores) y tareas completadas.
 
 import React from 'react';
 

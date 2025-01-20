@@ -1,3 +1,5 @@
+// Formulario de inicio de sesión. Envía las credenciales del usuario al servidor y almacena el token de autenticación en el localStorage si el inicio de sesión es exitoso.
+
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -24,7 +26,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-sm">
-        <h1 className="text-3xl font-bold mb-6 text-center text-blue-600">SayNoMore</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center text-blue-600">Say No More</h1>
         <h1 className="text-3xl font-bold mb-6 text-center text-green-500">Mantenimiento</h1>
         <h2 className="text-2xl font-semibold mb-4 text-center">Iniciar Sesión</h2>
         <form onSubmit={handleSubmit}>
