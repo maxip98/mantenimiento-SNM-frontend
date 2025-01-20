@@ -1,4 +1,6 @@
-// 
+// Componente que muestra las tareas completadas y permite aplicar filtros para buscar tareas específicas. 
+// También permite borrar y actualizar tareas si el usuario tiene el rol de administrador.
+
 import React from 'react';
 import TaskFilters from './TaskFilters';
 import TaskList from './TaskList';
