@@ -1,4 +1,4 @@
-// TaskForm: Formulario para agregar una nueva tarea con campos para local, pedido, descripción y prioridad.
+// Formulario para agregar una nueva tarea. Permite ingresar detalles como local, pedido, descripción, prioridad y tipo de mantenimiento. Al hacer clic en el botón "Agregar", se llama a la función addTask.
 
 import React from 'react';
 
@@ -46,6 +46,20 @@ const TaskForm = ({ newTask, setNewTask, addTask }) => {
           <option value="baja">Baja</option>
           <option value="media">Media</option>
           <option value="alta">Alta</option>
+        </select>
+      </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700">Tipo de mantenimiento</label>
+        <select
+          value={newTask.tipoMantenimiento}
+          onChange={(e) => setNewTask({ ...newTask, tipoMantenimiento: e.target.value })}
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+        >
+          <option value="equipo de frio">Equipo de frío</option>
+          <option value="pequeño electrodomestico">Pequeño electrodoméstico</option>
+          <option value="edilicio">Edilicio</option>
+          <option value="mobiliario">Mobiliario</option>
+          <option value="otro">Otro</option>
         </select>
       </div>
       <button
