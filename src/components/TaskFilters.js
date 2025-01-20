@@ -1,3 +1,5 @@
+// Componente para aplicar filtros a las tareas. Permite filtrar por local, prioridad y ordenar por fecha o prioridad.
+
 import React from 'react';
 
 const TaskFilters = ({ filters, setFilters, applyFilters }) => {
