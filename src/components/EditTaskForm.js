@@ -1,8 +1,8 @@
-// EditTaskForm: Formulario para editar una tarea con campos para local, pedido, descripción y prioridad.
+// Formulario para editar una tarea existente. Permite modificar campos como local, pedido, descripción, prioridad y tipo de mantenimiento. El campo de tipo de mantenimiento está deshabilitado para usuarios que no son administradores.
 
 import React from 'react';
 
-const EditTaskForm = ({ editTask, setEditTask, updateTask }) => {
+const EditTaskForm = ({ editTask, setEditTask, updateTask, userRole }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditTask({ ...editTask, [name]: value });
@@ -45,7 +45,7 @@ const EditTaskForm = ({ editTask, setEditTask, updateTask }) => {
         />
       </div>
       <div className="mb-2">
-        <label className="block text-sm font-medium text-gray-700">Prioridad</label>
+      <label className="block text-sm font-medium text-gray-700">Prioridad</label>
         <select
           name="prioridad"
           value={editTask.prioridad}
@@ -55,6 +55,22 @@ const EditTaskForm = ({ editTask, setEditTask, updateTask }) => {
           <option value="baja">Baja</option>
           <option value="media">Media</option>
           <option value="alta">Alta</option>
+        </select>
+      </div>
+      <div className="mb-2">
+        <label className="block text-sm font-medium text-gray-700">Tipo de mantenimiento</label>
+        <select
+          name="tipoMantenimiento"
+          value={editTask.tipoMantenimiento}
+          onChange={handleChange}
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          disabled={userRole !== 'admin'} // Deshabilitar si el usuario no es admin
+        >
+          <option value="equipo de frio">Equipo de frío</option>
+          <option value="pequeño electrodomestico">Pequeño electrodoméstico</option>
+          <option value="edilicio">Edilicio</option>
+          <option value="mobiliario">Mobiliario</option>
+          <option value="otro">Otro</option>
         </select>
       </div>
       <button
