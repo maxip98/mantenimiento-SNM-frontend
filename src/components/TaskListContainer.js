@@ -14,7 +14,11 @@ const TaskListContainer = ({
   showCompletedFilters,
   setShowCompletedFilters,
   deleteTask,
+<<<<<<< HEAD
   updateTask, // Asegúrate de recibir updateTask aquí
+=======
+  updateTask,
+>>>>>>> db72e820c8d8a2d3dd7293752809e17f3170c526
   completeTask,
   userRole,
   newTask,
@@ -22,6 +26,7 @@ const TaskListContainer = ({
   addTask,
   editTask,
   setEditTask
+<<<<<<< HEAD
 }) => {
   console.log('TaskListContainer received updateTask:', updateTask);
 
@@ -62,5 +67,43 @@ const TaskListContainer = ({
     </div>
   );
 };
+=======
+}) => (
+  <div className="bg-white p-4 rounded-lg shadow-lg">
+    {activeTab === 'pending' && (
+      <PendingTasks
+        tasks={tasks}
+        filters={filters}
+        setFilters={setFilters}
+        showFilters={showFilters}
+        setShowFilters={setShowFilters}
+        deleteTask={deleteTask}
+        updateTask={updateTask}
+        completeTask={completeTask}
+        userRole={userRole}
+      />
+    )}
+    {activeTab === 'newTask' && userRole === 'admin' && (
+      <TaskForm newTask={newTask} setNewTask={setNewTask} addTask={addTask} />
+    )}
+    {activeTab === 'completed' && (
+      <CompletedTasks
+        tasks={tasks}
+        filters={filters}
+        setFilters={setFilters}
+        showCompletedFilters={showCompletedFilters}
+        setShowCompletedFilters={setShowCompletedFilters}
+        deleteTask={deleteTask}
+        updateTask={updateTask}
+        completeTask={completeTask}
+        userRole={userRole}
+      />
+    )}
+    {editTask && userRole === 'admin' && (
+      <EditTaskForm editTask={editTask} setEditTask={setEditTask} updateTask={updateTask} userRole={userRole} />
+    )}
+  </div>
+);
+>>>>>>> db72e820c8d8a2d3dd7293752809e17f3170c526
 
 export default TaskListContainer;

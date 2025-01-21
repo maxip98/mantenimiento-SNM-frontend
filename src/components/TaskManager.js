@@ -121,7 +121,11 @@ const TaskManager = () => {
         showCompletedFilters={showCompletedFilters}
         setShowCompletedFilters={setShowCompletedFilters}
         deleteTask={deleteTask}
+<<<<<<< HEAD
         updateTask={updateTask} // Asegúrate de pasar updateTask aquí
+=======
+        updateTask={updateTask}
+>>>>>>> db72e820c8d8a2d3dd7293752809e17f3170c526
         completeTask={completeTask}
         userRole={userRole}
         newTask={newTask}
