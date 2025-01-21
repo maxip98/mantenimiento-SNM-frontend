@@ -1,3 +1,5 @@
+// Configuración de Axios para realizar solicitudes HTTP al backend. Incluye interceptores para agregar el token de autenticación a las solicitudes y manejar las respuestas.
+
 import axios from 'axios';
 
 const api = axios.create({
