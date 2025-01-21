@@ -1,5 +1,3 @@
-// Componente que muestra las tareas pendientes y permite aplicar filtros para buscar tareas específicas. También permite borrar, actualizar y completar tareas si el usuario tiene el rol de administrador.
-
 import React from 'react';
 import TaskFilters from './TaskFilters';
 import TaskList from './TaskList';
@@ -36,10 +34,12 @@ const PendingTasks = ({ tasks, filters, setFilters, showFilters, setShowFilters,
     setShowFilters(false); // Esconder el acordeón de búsqueda
   };
 
+  console.log('PendingTasks received updateTask:', updateTask);
+
   return (
     <div>
       <div className="flex justify-end mb-4">
-        <button
+      <button
           onClick={() => setShowFilters(!showFilters)}
           className="py-1 px-3 bg-green-600 text-white font-semibold rounded-md shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
         >
@@ -60,7 +60,7 @@ const PendingTasks = ({ tasks, filters, setFilters, showFilters, setShowFilters,
       <TaskList
         tasks={applyFilters()}
         deleteTask={userRole === 'admin' ? deleteTask : null}
-        updateTask={userRole === 'admin' ? updateTask : null}
+        updateTask={updateTask} // Asegúrate de pasar updateTask aquí
         completeTask={userRole === 'admin' ? completeTask : null}
         userRole={userRole}
       />

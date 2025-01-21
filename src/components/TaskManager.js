@@ -105,6 +105,8 @@ const TaskManager = () => {
     window.location.href = '/login';
   };
 
+  console.log('Passing updateTask to TaskListContainer:', updateTask);
+
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <NavBar handleLogout={handleLogout} username={username} />
@@ -119,7 +121,7 @@ const TaskManager = () => {
         showCompletedFilters={showCompletedFilters}
         setShowCompletedFilters={setShowCompletedFilters}
         deleteTask={deleteTask}
-        updateTask={updateTask}
+        updateTask={updateTask} // Asegúrate de pasar updateTask aquí
         completeTask={completeTask}
         userRole={userRole}
         newTask={newTask}

@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { FaSave, FaTimes } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaSave, FaTimes, FaCheck } from 'react-icons/fa';
 import TaskDetails from './TaskDetails';
 import TaskActions from './TaskActions';
 import ConfirmationModal from './ConfirmationModal';
 
 const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [isEditingObservations, setIsEditingObservations] = useState(false);
   const [editedTask, setEditedTask] = useState({ ...task });
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
+
+  console.log('TaskItem received updateTask:', updateTask);
 
   const handleEditClick = () => setIsEditing(true);
   const handleCancelClick = () => {
@@ -32,6 +35,16 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
   const confirmDeleteTask = () => {
     deleteTask(task._id);
     setIsDeleteModalOpen(false);
+  };
+
+  const handleEditObservationsClick = () => setIsEditingObservations(true);
+  const handleSaveObservationsClick = () => {
+    updateTask(editedTask);
+    setIsEditingObservations(false);
+  };
+  const handleCancelObservationsClick = () => {
+    setIsEditingObservations(false);
+    setEditedTask({ ...task });
   };
 
   return (
@@ -89,6 +102,33 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
           <TaskActions task={task} handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick} handleCompleteClick={handleCompleteClick} userRole={userRole} />
         </>
       )}
+      <div className="mb-2">
+        <strong>Observaciones:</strong>
+        {userRole === 'viewer' ? (
+          isEditingObservations ? (
+            <>
+              <textarea name="observaciones" value={editedTask.observaciones} onChange={handleChange} className="ml-2 border rounded p-1 w-full" />
+              <div className="flex justify-between mt-2">
+                <button onClick={handleSaveObservationsClick} className="py-1 px-2 bg-green-500 text-white rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 flex items-center">
+                  <FaSave className="mr-1" /> Guardar
+                </button>
+                <button onClick={handleCancelObservationsClick} className="py-1 px-2 bg-gray-500 text-white rounded-md shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 flex items-center">
+                  <FaTimes className="mr-1" /> Cancelar
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="ml-2">{task.observaciones}</p>
+              <button onClick={handleEditObservationsClick} className="py-1 px-2 bg-yellow-500 text-white rounded-md shadow hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 flex items-center mt-2">
+                <FaEdit className="mr-1" /> Editar Observaciones
+              </button>
+            </>
+          )
+        ) : (
+          <p className="ml-2">{task.observaciones}</p>
+        )}
+      </div>
       <ConfirmationModal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)} onConfirm={confirmDeleteTask} title="Confirmar Eliminación" message="¿Estás seguro de que quieres eliminar esta tarea?" />
       <ConfirmationModal isOpen={isCompleteModalOpen} onClose={() => setIsCompleteModalOpen(false)} onConfirm={confirmCompleteTask} title="Confirmar Completado" message="¿Estás seguro de que quieres marcar esta tarea como completada?" />
     </div>
