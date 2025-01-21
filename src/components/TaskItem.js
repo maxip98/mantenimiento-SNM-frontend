@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
 import { FaEdit, FaTrash, FaSave, FaTimes, FaCheck } from 'react-icons/fa';
-=======
-import { FaSave, FaTimes } from 'react-icons/fa';
->>>>>>> db72e820c8d8a2d3dd7293752809e17f3170c526
 import TaskDetails from './TaskDetails';
 import TaskActions from './TaskActions';
 import ConfirmationModal from './ConfirmationModal';
@@ -15,11 +11,8 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
 
-<<<<<<< HEAD
   console.log('TaskItem received updateTask:', updateTask);
 
-=======
->>>>>>> db72e820c8d8a2d3dd7293752809e17f3170c526
   const handleEditClick = () => setIsEditing(true);
   const handleCancelClick = () => {
     setIsEditing(false);
@@ -109,7 +102,6 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
           <TaskActions task={task} handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick} handleCompleteClick={handleCompleteClick} userRole={userRole} />
         </>
       )}
-<<<<<<< HEAD
       <div className="mb-2">
         <strong>Observaciones:</strong>
         {userRole === 'viewer' ? (
@@ -137,8 +129,6 @@ const TaskItem = ({ task, deleteTask, updateTask, completeTask, userRole }) => {
           <p className="ml-2">{task.observaciones}</p>
         )}
       </div>
-=======
->>>>>>> db72e820c8d8a2d3dd7293752809e17f3170c526
       <ConfirmationModal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)} onConfirm={confirmDeleteTask} title="Confirmar Eliminación" message="¿Estás seguro de que quieres eliminar esta tarea?" />
       <ConfirmationModal isOpen={isCompleteModalOpen} onClose={() => setIsCompleteModalOpen(false)} onConfirm={confirmCompleteTask} title="Confirmar Completado" message="¿Estás seguro de que quieres marcar esta tarea como completada?" />
     </div>
