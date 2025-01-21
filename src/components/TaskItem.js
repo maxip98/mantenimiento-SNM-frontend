@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaEdit, FaTrash, FaSave, FaTimes, FaCheck } from 'react-icons/fa';
+import { FaEdit, FaSave, FaTimes} from 'react-icons/fa';
 import TaskDetails from './TaskDetails';
 import TaskActions from './TaskActions';
 import ConfirmationModal from './ConfirmationModal';
