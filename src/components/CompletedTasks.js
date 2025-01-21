@@ -37,6 +37,8 @@ const CompletedTasks = ({ tasks, filters, setFilters, showCompletedFilters, setS
     setShowCompletedFilters(false); // Esconder el acordeón de búsqueda
   };
 
+  console.log('CompletedTasks received updateTask:', updateTask);
+
   return (
     <div>
       <div className="flex justify-end mb-4">
@@ -61,7 +63,7 @@ const CompletedTasks = ({ tasks, filters, setFilters, showCompletedFilters, setS
       <TaskList
         tasks={applyFilters()}
         deleteTask={userRole === 'admin' ? deleteTask : null}
-        updateTask={userRole === 'admin' ? updateTask : null}
+        updateTask={updateTask} // Asegúrate de pasar updateTask aquí
         completeTask={userRole === 'admin' ? completeTask : null}
         userRole={userRole}
       />

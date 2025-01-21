@@ -4,6 +4,8 @@ import React from 'react';
 import TaskItem from './TaskItem';
 
 const TaskList = ({ tasks, deleteTask, updateTask, completeTask, userRole }) => {
+  console.log('TaskList received updateTask:', updateTask);
+
   return (
     <div className="flex flex-wrap justify-center">
       {tasks.map(task => (
@@ -11,7 +13,7 @@ const TaskList = ({ tasks, deleteTask, updateTask, completeTask, userRole }) => 
           key={task._id}
           task={task}
           deleteTask={deleteTask}
-          updateTask={updateTask}
+          updateTask={updateTask} // Asegúrate de pasar updateTask aquí
           completeTask={completeTask}
           userRole={userRole}
         />
